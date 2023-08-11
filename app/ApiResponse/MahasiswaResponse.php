@@ -20,8 +20,8 @@ class MahasiswaResponse
             $data = $this->MahasiswaRepository->getAllData();
             if ($data->isEmpty()) {
                 return response()->json([
-                    'code' => 204, // Kode 204 berarti No Content
-                    'message' => 'No data found',
+                    'code' => 404, 
+                    'message' => 'Data not found',
                 ]);
             }
             return response()->json([
