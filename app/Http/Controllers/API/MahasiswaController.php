@@ -19,4 +19,9 @@ class MahasiswaController extends Controller
     {
         return $this->mahasiswaResponse->get();
     }
+
+    public function createData(Request $request)
+    {
+        return $this->mahasiswaResponse->create($request);
+    }
 }
