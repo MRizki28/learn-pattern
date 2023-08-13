@@ -31,9 +31,16 @@ class MahasiswaRepository implements MahasiswaInterfaces
         if ($validation->fails()) {
             return $validation;
         }
+
+        $entry = $this->model->where('entry_count', true)->first();
+        if ($entry) {
+            return ('checking_entry_count');
+        }
+
         try {
             $data = new $this->model;
             $data->nama = $request->input('nama');
+            $data->entry_count = true;
             $data->save();
 
             return $data;
