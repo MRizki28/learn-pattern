@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('tb_mahasiswa', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
+            $table->boolean('entry_count')->default(false);
             $table->timestamps();
         });
     }
