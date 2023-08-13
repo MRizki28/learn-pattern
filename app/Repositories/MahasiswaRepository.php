@@ -41,4 +41,15 @@ class MahasiswaRepository implements MahasiswaInterfaces
             return $th;
         }
     }
+
+    public function getDataById($id)
+    {
+        $data = $this->model->where('id', $id)->first();
+        if (!$data) {
+            return $data;
+        }
+        return $data;
+    }
+
+    
 }
