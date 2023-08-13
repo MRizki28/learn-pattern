@@ -4,6 +4,7 @@ namespace App\ApiResponse;
 
 use App\Repositories\MahasiswaRepository;
 use Illuminate\Http\Request;
+use PhpParser\Node\Expr\FuncCall;
 
 class MahasiswaResponse
 {
@@ -58,6 +59,23 @@ class MahasiswaResponse
             return response()->json([
                 'code' => 201,
                 'message' => 'Success create data',
+                'data' => $data
+            ]);
+        }
+    }
+
+    public function getById($id)
+    {
+        $data = $this->MahasiswaRepository->getDataById($id);
+        if (!$data) {
+            return response()->json([
+                'code' => 404,
+                'message' => 'Data not found'
+            ]);
+        }else{
+            return response()->json([
+                'code' => 200,
+                'message' => 'success get data by id',
                 'data' => $data
             ]);
         }
