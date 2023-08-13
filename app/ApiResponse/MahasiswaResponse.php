@@ -18,11 +18,11 @@ class MahasiswaResponse
     public function get()
     {
         try {
-            
+
             $data = $this->MahasiswaRepository->getAllData();
             if ($data->isEmpty()) {
                 return response()->json([
-                    'code' => 404, 
+                    'code' => 404,
                     'message' => 'Data not found',
                 ]);
             }
@@ -43,25 +43,35 @@ class MahasiswaResponse
     public function create(Request $request)
     {
         $data = $this->MahasiswaRepository->createData($request);
+
         if ($data instanceof \Illuminate\Validation\Validator && $data->fails()) {
             return response()->json([
                 'code' => 400,
                 'message' => 'Check your validation',
                 'errors' => $data->errors()
             ]);
-        } elseif ($data instanceof \Throwable) {
+        }
+
+        if ($data === 'checking_entry_count' ) {
+            return response()->json([
+                'code' => 400,
+                'message' => 'Data already exist'
+            ]);
+        }
+
+        if ($data instanceof \Throwable) {
             return response()->json([
                 'code' => 400,
                 'message' => 'Failed',
                 'errors' => $data->getMessage()
             ]);
-        } else {
-            return response()->json([
-                'code' => 201,
-                'message' => 'Success create data',
-                'data' => $data
-            ]);
         }
+
+        return response()->json([
+            'code' => 201,
+            'message' => 'Success create data',
+            'data' => $data
+        ]);
     }
 
     public function getById($id)
@@ -72,7 +82,7 @@ class MahasiswaResponse
                 'code' => 404,
                 'message' => 'Data not found'
             ]);
-        }else{
+        } else {
             return response()->json([
                 'code' => 200,
                 'message' => 'success get data by id',
@@ -80,5 +90,4 @@ class MahasiswaResponse
             ]);
         }
     }
-
 }
