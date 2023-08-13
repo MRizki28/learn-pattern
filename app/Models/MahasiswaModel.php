@@ -10,6 +10,6 @@ class MahasiswaModel extends Model
     use HasFactory;
     protected $table = 'tb_mahasiswa';
     protected $fillable = [
-        'id', 'nama', 'created_at', 'updated_at'
+        'id', 'nama','entry_count', 'created_at', 'updated_at'
     ];
 }
