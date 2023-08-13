@@ -21,3 +21,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/test', [MahasiswaController::class, 'getAllData']);
 Route::post('/create', [MahasiswaController::class, 'createData']);
+Route::get('/test/get/{id}', [MahasiswaController::class, 'getDataById']);
