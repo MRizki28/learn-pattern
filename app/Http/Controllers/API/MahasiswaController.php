@@ -24,4 +24,9 @@ class MahasiswaController extends Controller
     {
         return $this->mahasiswaResponse->create($request);
     }
+
+    public function getDataById($id)
+    {
+        return $this->mahasiswaResponse->getById($id);
+    }
 }
